@@ -31,12 +31,10 @@ void vTaskBluetoothSim(void *pvParameters) {
       // Aleatoriza se a conexão Bluetooth conseguiu parear ou falhou (timeout)
       int sorte = esp_random() % 100;
       if (sorte < CHANCE_CONEXAO_BT) {
-        Serial.printf("[BT SIM] Sucesso (%d < %d)! Maquina 2 encontrada e pareada!\n",
-                      sorte, CHANCE_CONEXAO_BT);
+        Serial.printf("[BT SIM] Sucesso (%d < %d)! Maquina 2 encontrada e pareada!\n", sorte, CHANCE_CONEXAO_BT);
         publicarEvento(EV_ENCONTRA_DISPOSITIVO);
       } else {
-        Serial.printf("[BT SIM] Falha (%d >= %d)! M2 nao respondeu (Timeout).\n",
-                      sorte, CHANCE_CONEXAO_BT);
+        Serial.printf("[BT SIM] Falha (%d >= %d)! M2 nao respondeu (Timeout).\n", sorte, CHANCE_CONEXAO_BT);
         publicarEvento(EV_TIMEOUT_BT_PAREAMENTO);
       }
     }
@@ -58,7 +56,6 @@ void vTaskBluetoothSim(void *pvParameters) {
         ry = random(0, TAM_GRID);
       } while (simM2TirosFeitos[rx][ry]);
       simM2TirosFeitos[rx][ry] = true; 
-
       simTiroM2X = rx;
       simTiroM2Y = ry;
       Serial.printf("[BT SIM] M2 atirou em (%d,%d)\n", rx, ry);
